@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=100, unique=True) # "Hogar y Jaridin"
-    slug = models.SlugField(max_length=100, unique=True) # "hogar-y-jardin"
+    nombre = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
 
     class Meta:
         verbose_name = "Categoria"
@@ -13,13 +13,14 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Producto(models.Model):
     categoria = models.ForeignKey(
         Categoria,
         on_delete=models.CASCADE,
         related_name='productos',
-        null = True,
-        blank = True # temporal hasta que se agregue la categoria a todos los productos
+        null=True,
+        blank=True
     )
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -37,4 +38,3 @@ class Producto(models.Model):
 
     def __str__(self):
         return f'{self.nombre} - {self.marca} - ${self.precio} - Stock: {self.stock}'
-

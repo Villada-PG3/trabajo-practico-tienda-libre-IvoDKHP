@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>About me</title>
-</head>
-<body>
-    <h1>Hola, esta es la pagina sobre mi</h1>
-    <p1>Esta es la pagina sobre mi. Soy Ivo Miscevich, tengo 17 años, estudio en el ITS Villada y se sobre MySQL, Python, HMTL, manipulacion de archivos JSON y estoy actualmente aprendiendo a usar DJANGO.<p1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+Acerca de mí - Tienda Libre
+{% endblock %}
+
+{% block content %}
+
+<h1>Acerca de mí</h1>
+
+<p>Hola, soy Ivo y estoy aprendiendo desarrollo web con Django.</p>
+
+<p>
+    Estoy aprendiendo a crear aplicaciones web,
+    trabajar con bases de datos y utilizar Django.
+</p>
+
+{% endblock %}
