@@ -1,13 +1,60 @@
 {% extends "base.html" %}
 
 {% block title %}
-Inicio - Tienda Libre
+{{ nombre_tienda }}
 {% endblock %}
 
 {% block content %}
 
-<h1 class="text-primary">Hola, bienvenido a Tienda Libre</h1>
+<h1>{{ nombre_tienda }}</h1>
 
-<p>Esta es la página principal de nuestra tienda.</p>
+<p>Productos destacados: {{ productos_destacados|length }}</p>
+
+<div class="row">
+
+    {% for producto in productos_destacados %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <h2 class="card-title">
+                        {{ producto.nombre|title }}
+                    </h2>
+
+                    <p class="card-text">
+                        {{ producto.descripcion|truncatechars:50 }}
+                    </p>
+
+                    <p>
+                        Precio:
+                        {% if producto.precio %}
+                            ${{ producto.precio|floatformat:2 }}
+                        {% else %}
+                            {{ producto.precio|default:"Sin precio" }}
+                        {% endif %}
+                    </p>
+
+                    {% if producto.disponible %}
+                        <p class="text-success">Disponible</p>
+                    {% else %}
+                        <p class="text-danger">No disponible</p>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <p>No hay productos destacados.</p>
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}
